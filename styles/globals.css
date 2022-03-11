@@ -1,3 +1,7 @@
+html {
+  font-size: 62.5%;
+}
+
 html,
 body {
   padding: 0;
@@ -13,4 +17,17 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.centered {
+  text-align: center;
+  margin: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+h1 {
+  font-size: 3rem;
 }

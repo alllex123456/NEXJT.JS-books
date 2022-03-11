@@ -1,0 +1,16 @@
+.book {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 5px 5px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 5px;
+  margin: 3rem auto;
+}
+
+.format {
+  font-size: 1.2rem;
+}
+.published {
+  font-size: 1.2rem;
+}
+.description {
+  font-size: 1.4rem;
+}
