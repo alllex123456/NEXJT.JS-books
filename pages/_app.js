@@ -2,11 +2,15 @@ import '../styles/globals.css';
 
 import Layout from '../components/Layout/Layout';
 
+import { AdminContextProvider } from '../context';
+
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <AdminContextProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </AdminContextProvider>
   );
 }
 

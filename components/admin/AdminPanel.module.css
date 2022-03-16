@@ -1,0 +1,12 @@
+.container {
+  padding: 5rem;
+}
+
+.list {
+  background: rgba(153, 153, 153, 0.281);
+  padding: 2rem;
+}
+
+.list li {
+  border-bottom: 1px solid #666;
+}

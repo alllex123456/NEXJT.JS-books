@@ -33,7 +33,7 @@ const SearchBooks = (props) => {
           <option value="hardback">Hardback</option>
         </select>
       </div>
-      <button>Filter</button>
+      <button className={classes.btn}>Filter</button>
     </form>
   );
 };

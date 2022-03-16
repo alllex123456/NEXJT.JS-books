@@ -1,0 +1,49 @@
+.loginContainer {
+  padding: 3rem;
+  background: rgba(212, 78, 78, 0.459);
+
+  text-align: center;
+
+  width: 70rem;
+  margin: 5rem auto;
+
+  border-radius: 1rem;
+}
+
+.loginForm {
+  padding: 4rem;
+  margin: 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+}
+
+.loginForm input {
+  display: block;
+  width: 100%;
+  margin-bottom: 2rem;
+  height: 4rem;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 1.8rem;
+  padding: 1rem;
+  outline: none;
+  border: none;
+}
+
+.loginForm button {
+  background: rgb(160, 26, 26);
+  color: #fff;
+  border: none;
+  padding: 2rem;
+  width: 100%;
+  border-radius: 5px;
+
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.loginForm button:hover {
+  filter: brightness(120%);
+}

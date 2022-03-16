@@ -1,13 +1,15 @@
 .form {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 5px 5px rgba(0, 0, 0, 0.2);
   padding: 2rem;
-  max-width: 50rem;
+  max-width: 80rem;
   border-radius: 5px;
   margin: 3rem auto;
   text-align: center;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
 }
 
 .form label {
@@ -17,13 +19,31 @@
 }
 
 .form select {
+  padding: 0.8rem 2rem;
   font: inherit;
   font-size: 1.8rem;
   border-radius: 5px;
-  border: 2px solid red;
+  border: 2px solid rgb(131, 31, 31);
   outline: none;
 }
 
 .form option {
   color: #333;
+}
+
+.btn {
+  cursor: pointer;
+  font: inherit;
+  background-color: brown;
+  border-radius: 3px;
+  border: none;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  box-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.3);
 }
