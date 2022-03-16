@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 import AllBooks from '../components/books/AllBooks';
 import SearchBooks from '../components/books/SearchBooks';
 
-import { getAllBooks } from '../api-utils';
+import { filterFormat, getAllBooks } from '../api-utils';
 import { filterGenre } from '../api-utils';
 
 const HomePage = (props) => {
@@ -13,9 +13,18 @@ const HomePage = (props) => {
     setBooks(filteredBooks);
   };
 
+  const filterFormatHandler = async (format) => {
+    const filteredBooks = await filterFormat(format);
+    console.log(filteredBooks);
+    setBooks(filteredBooks);
+  };
+
   return (
     <Fragment>
-      <SearchBooks onFilter={filterGenreHandler} />
+      <SearchBooks
+        onFilterGenre={filterGenreHandler}
+        onFilterFormat={filterFormatHandler}
+      />
       <AllBooks items={books} />
     </Fragment>
   );

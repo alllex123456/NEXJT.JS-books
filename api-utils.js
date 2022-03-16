@@ -28,6 +28,13 @@ export const filterGenre = async (genre) => {
   return books.filter((book) => book.genre === genre);
 };
 
+export const filterFormat = async (format) => {
+  const books = await getAllBooks();
+  return books.filter((book) =>
+    book.format.trim().toLowerCase().includes(format)
+  );
+};
+
 export const getFeaturedBooks = async () => {
   const books = await getAllBooks();
   return books.filter((book) => book.isFeatured);
