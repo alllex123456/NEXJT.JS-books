@@ -1,10 +1,18 @@
 import AllBooks from '../../components/books/AllBooks';
-import { getFeaturedBooks } from '../../dummy-books';
+import { getFeaturedBooks } from '../../api-utils';
 
-const FeaturedBooksPage = () => {
-  const books = getFeaturedBooks();
-
-  return <AllBooks items={books} />;
+const FeaturedBooksPage = (props) => {
+  return <AllBooks items={props.featuredBooks} />;
 };
+
+export async function getStaticProps() {
+  const featuredBooks = await getFeaturedBooks();
+
+  return {
+    props: {
+      featuredBooks: featuredBooks,
+    },
+  };
+}
 
 export default FeaturedBooksPage;

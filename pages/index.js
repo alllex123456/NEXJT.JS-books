@@ -1,14 +1,16 @@
 import { Fragment, useState } from 'react';
 import AllBooks from '../components/books/AllBooks';
 import SearchBooks from '../components/books/SearchBooks';
-import DUMMY_BOOKS from '../dummy-books';
-import { filterGenre } from '../dummy-books';
 
-const HomePage = () => {
-  const [books, setBooks] = useState(DUMMY_BOOKS);
+import { getAllBooks } from '../api-utils';
+import { filterGenre } from '../api-utils';
 
-  const filterGenreHandler = (genre) => {
-    setBooks(filterGenre(genre));
+const HomePage = (props) => {
+  const [books, setBooks] = useState(props.books);
+
+  const filterGenreHandler = async (genre) => {
+    const filteredBooks = await filterGenre(genre);
+    setBooks(filteredBooks);
   };
 
   return (
@@ -18,5 +20,15 @@ const HomePage = () => {
     </Fragment>
   );
 };
+
+export async function getStaticProps() {
+  const allBooks = await getAllBooks();
+
+  return {
+    props: {
+      books: allBooks,
+    },
+  };
+}
 
 export default HomePage;

@@ -1,14 +1,34 @@
 import { useRouter } from 'next/router';
-import { getBook } from '../../dummy-books';
+import { getBookById } from '../../api-utils';
+import { getAllBooks } from '../../api-utils';
 import BookDetails from '../../components/books/BookDetails';
 
-const BookPage = () => {
-  const router = useRouter();
-  const bookId = router.query.bookId;
-
-  const [book] = getBook(bookId);
-
-  return <BookDetails picture={book.picture} title={book.title} />;
+const BookPage = (props) => {
+  return <BookDetails picture={props.book.picture} title={props.book.title} />;
 };
+
+export async function getStaticPaths() {
+  const allBooks = await getAllBooks();
+  const idPaths = allBooks.map((book) => ({
+    params: {
+      bookId: book.id,
+    },
+  }));
+  return {
+    paths: idPaths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context) {
+  const { bookId } = context.params;
+  const book = await getBookById(bookId);
+
+  return {
+    props: {
+      book: book,
+    },
+  };
+}
 
 export default BookPage;
