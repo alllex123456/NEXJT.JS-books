@@ -9,7 +9,7 @@ const Button = (props) => {
       </Link>
     );
   }
-  if (props.link) {
+  if (!props.link) {
     return (
       <Button clasName={classes.btn} onClick={props.onClick}>
         {props.children}

@@ -1,0 +1,19 @@
+.comments {
+  width: 90rem;
+  margin: 5rem auto;
+  padding: 1rem;
+  border-top: 1px solid #999;
+}
+
+.comments h2 {
+  font-size: 2rem;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list li {
+  font-size: 1.6rem;
+}
