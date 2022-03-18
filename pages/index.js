@@ -5,6 +5,8 @@ import SearchBooks from '../components/books/SearchBooks';
 import { filterFormat, getAllBooks } from '../api-utils';
 import { filterGenre } from '../api-utils';
 
+import { clientConnect, retrieveDocument } from './api/db-utils';
+
 const HomePage = (props) => {
   const [books, setBooks] = useState(props.books);
 
@@ -31,7 +33,22 @@ const HomePage = (props) => {
 };
 
 export async function getStaticProps() {
-  const allBooks = await getAllBooks();
+  // const allBooks = await getAllBooks();
+
+  const client = await clientConnect();
+  const retrievedBooks = await retrieveDocument(client, 'items');
+  const allBooks = retrievedBooks.map((book) => ({
+    id: book._id.toString(),
+    title: book.title,
+    author: book.author,
+    genre: book.genre,
+    picture: book.picture,
+    format: book.format,
+    publishedDate: book.publishedDate,
+    isFeatured: book.isFeatured,
+    description: book.description,
+  }));
+  console.log(allBooks);
 
   return {
     props: {
