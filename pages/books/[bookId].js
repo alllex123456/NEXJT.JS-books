@@ -1,10 +1,10 @@
-import { Fragment } from 'react/cjs/react.production.min';
+import { Fragment } from 'react';
+import { useRouter } from 'next/router';
+import { clientConnect, retrieveDocument } from '../api/db-utils';
 import { getBookById } from '../../api-utils';
-import { getAllBooks } from '../../api-utils';
 import BookDetails from '../../components/books/BookDetails';
 import NewComment from '../../components/inputs/NewComment';
 import Comments from '../../components/inputs/Comments';
-import { useRouter } from 'next/router';
 
 const BookPage = (props) => {
   const { book } = props;
@@ -34,13 +34,25 @@ const BookPage = (props) => {
         author={book.author}
       />
       <NewComment onSubmitComment={newCommentHandler} />
-      <Comments />
+      <Comments commentId={bookId} />
     </Fragment>
   );
 };
 
 export async function getStaticPaths() {
-  const allBooks = await getAllBooks();
+  const client = await clientConnect();
+  const retrievedBooks = await retrieveDocument(client, 'items');
+  const allBooks = retrievedBooks.map((book) => ({
+    id: book._id.toString(),
+    title: book.title,
+    author: book.author,
+    genre: book.genre,
+    picture: book.picture,
+    format: book.format,
+    publishedDate: book.publishedDate,
+    isFeatured: book.isFeatured,
+    description: book.description,
+  }));
   const idPaths = allBooks.map((book) => ({
     params: {
       bookId: book.id,
@@ -53,8 +65,22 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
+  const client = await clientConnect();
+  const retrievedBooks = await retrieveDocument(client, 'items');
+  const allBooks = retrievedBooks.map((book) => ({
+    id: book._id.toString(),
+    title: book.title,
+    author: book.author,
+    genre: book.genre,
+    picture: book.picture,
+    format: book.format,
+    publishedDate: book.publishedDate,
+    isFeatured: book.isFeatured,
+    description: book.description,
+  }));
+
   const { bookId } = context.params;
-  const book = await getBookById(bookId);
+  const book = getBookById(allBooks, bookId);
 
   return {
     props: {

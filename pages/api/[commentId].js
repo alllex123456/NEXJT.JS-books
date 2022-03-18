@@ -1,5 +1,7 @@
 import { clientConnect, insertDocument, retrieveDocument } from './db-utils';
 
+import { MongoClient } from 'mongodb';
+
 const handler = async (req, res) => {
   let client;
 
@@ -27,25 +29,34 @@ const handler = async (req, res) => {
 
     try {
       await insertDocument(client, 'comments', enteredComment);
-      client.close();
+
       res.status(201).json({ message: 'Comment submitted' });
+      client.close();
     } catch (error) {
       res.status(500).json({
         message: 'Connected to the database, but could not submit the data',
       });
+      client.close();
     }
   }
 
   if (req.method === 'GET') {
     try {
-      await retrieveDocument(client, 'comments');
-      res.status(201).json({
-        message: 'Comments successfully fetched',
-      });
+      const client = await MongoClient.connect(
+        'mongodb+srv://alex:andaluzia231178@cluster0.vndt4.mongodb.net/books?retryWrites=true&w=majority'
+      );
+      const db = client.db();
+      const data = await db
+        .collection('comments')
+        .find({ commentIdentifier: req.query.commentId })
+        .toArray();
+      res.status(201).json({ comments: data });
+      client.close();
     } catch (error) {
       res.status(500).json({
         message: 'Database contacted, but could not fetch the comments',
       });
+      client.close();
     }
   }
 };

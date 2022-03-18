@@ -2,7 +2,7 @@
   width: 90rem;
   margin: 5rem auto;
   padding: 1rem;
-  border-top: 1px solid #999;
+  border-top: 2px solid rgba(153, 153, 153, 0.589);
 }
 
 .comments h2 {
@@ -15,5 +15,21 @@
 }
 
 .list li {
+  position: relative;
   font-size: 1.6rem;
+  border-bottom: 1px solid rgba(153, 153, 153, 0.226);
+  margin-bottom: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.list p {
+  color: #333;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.list q {
+  font-style: oblique;
 }

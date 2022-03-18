@@ -1,40 +1,21 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import AllBooks from '../components/books/AllBooks';
 import SearchBooks from '../components/books/SearchBooks';
-
-import { filterFormat, getAllBooks } from '../api-utils';
-import { filterGenre } from '../api-utils';
 
 import { clientConnect, retrieveDocument } from './api/db-utils';
 
 const HomePage = (props) => {
-  const [books, setBooks] = useState(props.books);
-
-  const filterGenreHandler = async (genre) => {
-    const filteredBooks = await filterGenre(genre);
-    setBooks(filteredBooks);
-  };
-
-  const filterFormatHandler = async (format) => {
-    const filteredBooks = await filterFormat(format);
-    console.log(filteredBooks);
-    setBooks(filteredBooks);
-  };
+  const { books } = props;
 
   return (
     <Fragment>
-      <SearchBooks
-        onFilterGenre={filterGenreHandler}
-        onFilterFormat={filterFormatHandler}
-      />
+      <SearchBooks />
       <AllBooks items={books} />
     </Fragment>
   );
 };
 
 export async function getStaticProps() {
-  // const allBooks = await getAllBooks();
-
   const client = await clientConnect();
   const retrievedBooks = await retrieveDocument(client, 'items');
   const allBooks = retrievedBooks.map((book) => ({
@@ -48,7 +29,6 @@ export async function getStaticProps() {
     isFeatured: book.isFeatured,
     description: book.description,
   }));
-  console.log(allBooks);
 
   return {
     props: {
