@@ -1,0 +1,44 @@
+.form {
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+}
+
+.form input {
+  font: inherit;
+  font-size: 1.6rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  height: 3.5rem;
+  width: 20rem;
+  padding: 1rem;
+}
+
+.form input:hover {
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.form button {
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.6rem;
+  background-color: brown;
+  border: none;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  padding: 0.4rem 1.5rem 0.6rem;
+  font-size: 2rem;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.form button:hover {
+  box-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.3);
+}

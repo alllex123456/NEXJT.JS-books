@@ -11,7 +11,11 @@ export const insertDocument = async (client, collection, document) => {
   return await db.collection(collection).insertOne(document);
 };
 
-export const retrieveDocument = async (client, collection) => {
+export const retrieveDocument = async (client, collection, identifier) => {
   const db = client.db();
-  return await db.collection(collection).find().sort({ _id: -1 }).toArray();
+  return await db
+    .collection(collection)
+    .find(identifier)
+    .sort({ _id: -1 })
+    .toArray();
 };

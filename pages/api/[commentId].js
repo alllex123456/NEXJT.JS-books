@@ -11,6 +11,7 @@ const handler = async (req, res) => {
     res
       .status(500)
       .json({ message: 'Could not establish a connection to the database' });
+    return;
   }
 
   if (req.method === 'POST') {
@@ -36,27 +37,30 @@ const handler = async (req, res) => {
       res.status(500).json({
         message: 'Connected to the database, but could not submit the data',
       });
-      client.close();
+      return;
     }
   }
 
   if (req.method === 'GET') {
     try {
-      const client = await MongoClient.connect(
-        'mongodb+srv://alex:andaluzia231178@cluster0.vndt4.mongodb.net/books?retryWrites=true&w=majority'
-      );
-      const db = client.db();
-      const data = await db
-        .collection('comments')
-        .find({ commentIdentifier: req.query.commentId })
-        .toArray();
+      // const client = await MongoClient.connect(
+      //   'mongodb+srv://alex:andaluzia231178@cluster0.vndt4.mongodb.net/books?retryWrites=true&w=majority'
+      // );
+      // const db = client.db();
+      // const data = await db
+      //   .collection('comments')
+      //   .find({ commentIdentifier: req.query.commentId })
+      //   .toArray();
+      const data = await retrieveDocument(client, 'comments', {
+        commentIdentifier: req.query.commentId,
+      });
       res.status(201).json({ comments: data });
       client.close();
     } catch (error) {
       res.status(500).json({
         message: 'Database contacted, but could not fetch the comments',
       });
-      client.close();
+      return;
     }
   }
 };
