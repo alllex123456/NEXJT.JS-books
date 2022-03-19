@@ -1,7 +1,16 @@
 .form {
-  position: fixed;
-  bottom: 5rem;
-  right: 5rem;
+  position: absolute;
+  top: 12rem;
+  right: 1rem;
+  opacity: 70%;
+}
+
+.form:hover {
+  opacity: 100%;
+}
+
+.form p {
+  font-weight: 700;
 }
 
 .form input {

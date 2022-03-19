@@ -1,9 +1,18 @@
+import Head from 'next/head';
 import AllBooks from '../../components/books/AllBooks';
 import { getFeaturedBooks } from '../../api-utils';
 import { clientConnect, retrieveDocument } from '../api/db-utils';
+import { Fragment } from 'react/cjs/react.production.min';
 
 const FeaturedBooksPage = (props) => {
-  return <AllBooks items={props.featuredBooks} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>Books Store | Featured Books</title>
+      </Head>
+      <AllBooks items={props.featuredBooks} />;
+    </Fragment>
+  );
 };
 
 export async function getStaticProps() {

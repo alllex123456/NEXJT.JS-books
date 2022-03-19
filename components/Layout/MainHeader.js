@@ -11,7 +11,7 @@ const MainHeader = () => {
     <header className={classes.header}>
       <div className={classes.logo}>
         <a href="/">
-          <h1>BooksLibrary</h1>
+          <h1>BooksStore</h1>
         </a>
       </div>
       <nav className={classes.navigation}>

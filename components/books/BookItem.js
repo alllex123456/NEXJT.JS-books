@@ -28,7 +28,9 @@ const BookItem = (props) => {
         <strong>Description: </strong>
         {description}
       </p>
-      <Button link={`/books/${id}`}>View more</Button>
+      <Button className={classes.btn} link={`/books/${id}`}>
+        View more
+      </Button>
     </div>
   );
 };

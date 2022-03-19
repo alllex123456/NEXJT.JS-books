@@ -1,3 +1,4 @@
+import Head from 'next/dist/shared/lib/head';
 import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 import { clientConnect, retrieveDocument } from '../api/db-utils';
@@ -27,6 +28,9 @@ const BookPage = (props) => {
 
   return (
     <Fragment>
+      <Head>
+        <title>Books Store | {book.title}</title>
+      </Head>
       <BookDetails
         picture={book.picture}
         title={book.title}

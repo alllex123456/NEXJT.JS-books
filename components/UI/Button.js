@@ -5,13 +5,16 @@ const Button = (props) => {
   if (props.link) {
     return (
       <Link href={props.link}>
-        <a className={classes.btn}>{props.children}</a>
+        <a className={`${classes.btn} ${props.className}`}>{props.children}</a>
       </Link>
     );
   }
   if (!props.link) {
     return (
-      <Button clasName={classes.btn} onClick={props.onClick}>
+      <Button
+        clasName={`${classes.btn} ${props.className}`}
+        onClick={props.onClick}
+      >
         {props.children}
       </Button>
     );

@@ -18,6 +18,7 @@ const Newsletter = (props) => {
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
+      <p>Subscribe to our newsletter!</p>
       <input type="email" ref={emailInputRef} />
       <button>Subscribe</button>
     </form>

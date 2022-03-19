@@ -1,10 +1,19 @@
+import Head from 'next/dist/shared/lib/head';
+import { Fragment } from 'react/cjs/react.production.min';
 import AllBooks from '../../components/books/AllBooks';
 import { clientConnect, retrieveDocument } from '../api/db-utils';
 
 function FilteredBooksPage(props) {
   const { books } = props;
 
-  return <AllBooks items={books} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>Books Store | Filtered Books</title>
+      </Head>
+      <AllBooks items={books} />;
+    </Fragment>
+  );
 }
 
 export async function getServerSideProps(context) {

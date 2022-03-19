@@ -26,7 +26,7 @@ const HomePage = (props) => {
   return (
     <Fragment>
       <Head>
-        <title>Books Store</title>
+        <title>Books Store | Main Page</title>
       </Head>
       <SearchBooks />
       <AllBooks items={books} />
