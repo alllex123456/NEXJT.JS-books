@@ -2,7 +2,7 @@ import Head from 'next/head';
 import AllBooks from '../../components/books/AllBooks';
 import { getFeaturedBooks } from '../../api-utils';
 import { clientConnect, retrieveDocument } from '../api/db-utils';
-import { Fragment } from 'react/cjs/react.production.min';
+import { Fragment } from 'react';
 
 const FeaturedBooksPage = (props) => {
   return (

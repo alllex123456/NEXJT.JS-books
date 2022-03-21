@@ -17,7 +17,7 @@ const handler = async (req, res) => {
     subscriptions.map((subscriber) => {
       if (subscriber.email === email) {
         res
-          .status(201)
+          .status(500)
           .json({ message: `You are already subscribed (${email})` });
         client.close();
       }
