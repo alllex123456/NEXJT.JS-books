@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import swal from 'sweetalert';
 import Head from 'next/head';
 import AllBooks from '../components/books/AllBooks';
 import SearchBooks from '../components/books/SearchBooks';
@@ -9,7 +10,7 @@ import { clientConnect, retrieveDocument } from './api/db-utils';
 const HomePage = (props) => {
   const { books } = props;
 
-  const newSubscriptionHandler = (email) => {
+  const newSubscriptionHandler = (email, confirm) => {
     fetch('/api/newsletter', {
       method: 'POST',
       body: JSON.stringify({
@@ -20,7 +21,7 @@ const HomePage = (props) => {
       },
     })
       .then((res) => res.json())
-      .then((data) => alert(data.message));
+      .then((data) => swal(data.message));
   };
 
   return (

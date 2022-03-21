@@ -46,3 +46,16 @@
 .form button:hover {
   box-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.3);
 }
+
+.confirmation {
+  animation: fade 1s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+}

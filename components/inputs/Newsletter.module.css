@@ -3,6 +3,21 @@
   top: 12rem;
   right: 1rem;
   opacity: 70%;
+  text-align: center;
+}
+
+@media (max-width: 1500px) {
+  .form {
+    top: 10rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 1500px) {
+  .form {
+    width: 90%;
+  }
 }
 
 .form:hover {

@@ -9,7 +9,7 @@ const Comments = (props) => {
     fetch(`/api/${commentId}`)
       .then((res) => res.json())
       .then((data) => setComments(data.comments));
-  }, []);
+  }, [comments]);
 
   return (
     <div className={classes.comments}>

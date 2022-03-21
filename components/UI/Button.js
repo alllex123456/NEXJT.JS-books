@@ -9,16 +9,15 @@ const Button = (props) => {
       </Link>
     );
   }
-  if (!props.link) {
-    return (
-      <Button
-        clasName={`${classes.btn} ${props.className}`}
-        onClick={props.onClick}
-      >
-        {props.children}
-      </Button>
-    );
-  }
+
+  return (
+    <Button
+      clasName={`${classes.btn} ${props.className}`}
+      onClick={props.onClick}
+    >
+      {props.children}
+    </Button>
+  );
 };
 
 export default Button;

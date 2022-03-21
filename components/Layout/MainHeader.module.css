@@ -6,3 +6,17 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.contact {
+  margin-left: 2rem;
+}
+
+@media (max-width: 500px) {
+  .navigation a {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    display: block;
+    text-align: right;
+  }
+}

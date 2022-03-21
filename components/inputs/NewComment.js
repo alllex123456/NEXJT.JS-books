@@ -1,8 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import classes from './NewComment.module.css';
 
 const NewComment = (props) => {
+  const [commentSubmitted, setCommentSubmitted] = useState('');
+
   const nameInputRef = useRef();
   const textInputRef = useRef();
 
@@ -19,6 +21,8 @@ const NewComment = (props) => {
 
     nameInputRef.current.value = '';
     textInputRef.current.value = '';
+
+    setCommentSubmitted(props.message);
   };
 
   return (
@@ -31,6 +35,9 @@ const NewComment = (props) => {
         ref={textInputRef}
       ></textarea>
       <button>Submit</button>
+      {commentSubmitted && (
+        <p className={classes.confirmation}>{commentSubmitted}</p>
+      )}
     </form>
   );
 };

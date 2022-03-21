@@ -1,6 +1,7 @@
 import Head from 'next/dist/shared/lib/head';
 import { Fragment } from 'react/cjs/react.production.min';
 import AllBooks from '../../components/books/AllBooks';
+import SearchBooks from '../../components/books/SearchBooks';
 import { clientConnect, retrieveDocument } from '../api/db-utils';
 
 function FilteredBooksPage(props) {
@@ -11,6 +12,7 @@ function FilteredBooksPage(props) {
       <Head>
         <title>Books Store | Filtered Books</title>
       </Head>
+      <SearchBooks />
       <AllBooks items={books} />;
     </Fragment>
   );

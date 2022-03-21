@@ -1,5 +1,5 @@
 import Head from 'next/dist/shared/lib/head';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { useRouter } from 'next/router';
 import { clientConnect, retrieveDocument } from '../api/db-utils';
 import { getBookById } from '../../api-utils';
@@ -8,6 +8,7 @@ import NewComment from '../../components/inputs/NewComment';
 import Comments from '../../components/inputs/Comments';
 
 const BookPage = (props) => {
+  const [commentReturnMessage, setCommentReturnMessage] = useState(null);
   const { book } = props;
   const router = useRouter();
   const { bookId } = router.query;
@@ -23,7 +24,7 @@ const BookPage = (props) => {
       headers: { 'Content-Type': 'application/json' },
     })
       .then((res) => res.json())
-      .then((data) => alert(data.message));
+      .then((data) => setCommentReturnMessage(data.message));
   };
 
   return (
@@ -37,7 +38,10 @@ const BookPage = (props) => {
         description={book.description}
         author={book.author}
       />
-      <NewComment onSubmitComment={newCommentHandler} />
+      <NewComment
+        message={commentReturnMessage}
+        onSubmitComment={newCommentHandler}
+      />
       <Comments commentId={bookId} />
     </Fragment>
   );

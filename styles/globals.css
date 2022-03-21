@@ -2,6 +2,12 @@ html {
   font-size: 62.5%;
 }
 
+@media (max-width: 850px) {
+  html {
+    font-size: 50%;
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -30,4 +36,23 @@ ul {
 
 h1 {
   font-size: 3rem;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+.swal-button {
+  padding: 1rem 1.2rem;
+  border-radius: 2px;
+  background-color: #b13b3b;
+  font-size: 1.2rem;
+  border: 1px solid #630f0d;
+}
+
+.swal-button:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  background-color: #b13b3b;
+  border: 1px solid #630f0d;
 }

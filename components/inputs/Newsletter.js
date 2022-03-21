@@ -3,6 +3,7 @@ import classes from './Newsletter.module.css';
 
 const Newsletter = (props) => {
   const [showInput, setShowInput] = useState(true);
+
   const emailInputRef = useRef();
 
   const submitHandler = (e) => {

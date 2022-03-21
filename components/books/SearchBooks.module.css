@@ -7,15 +7,35 @@
   text-align: center;
 
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 3rem;
+}
+
+@media (max-width: 1500px) {
+  .form {
+    margin: 10rem auto 3rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .form {
+    gap: 1rem;
+    max-width: 50rem;
+  }
 }
 
 .form label {
   font-size: 1.8rem;
   font-weight: 700;
   margin-right: 1rem;
+}
+
+@media (max-width: 400px) {
+  .form label {
+    font-size: 1.2rem;
+  }
 }
 
 .form select {
@@ -25,6 +45,12 @@
   border-radius: 5px;
   border: 2px solid rgb(131, 31, 31);
   outline: none;
+}
+
+@media (max-width: 400px) {
+  .form select {
+    font-size: 1.2rem;
+  }
 }
 
 .form option {

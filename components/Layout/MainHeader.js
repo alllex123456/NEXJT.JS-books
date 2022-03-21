@@ -2,6 +2,7 @@ import Button from '../UI/Button';
 import classes from './MainHeader.module.css';
 import { useContext } from 'react';
 import AdminContext from '../../context';
+import { Fragment } from 'react';
 
 const MainHeader = () => {
   const adminCtx = useContext(AdminContext);
@@ -17,7 +18,14 @@ const MainHeader = () => {
       <nav className={classes.navigation}>
         <ul>
           <li>
-            {!token && <Button link="/books">See Featured Books</Button>}
+            {!token && (
+              <Fragment>
+                <Button link="/books">See Featured Books</Button>
+                <Button className={classes.contact} link="/contact">
+                  Contact us
+                </Button>
+              </Fragment>
+            )}
             {token && <Button link="/books">Add Books</Button>}
           </li>
         </ul>
