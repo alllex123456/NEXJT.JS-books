@@ -1,19 +1,26 @@
 import Head from 'next/dist/shared/lib/head';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { clientConnect, retrieveDocument } from '../api/db-utils';
 import { getBookById } from '../../api-utils';
+
+import FeedbackContext from '../store/feedback';
 import BookDetails from '../../components/books/BookDetails';
 import NewComment from '../../components/inputs/NewComment';
 import Comments from '../../components/inputs/Comments';
 
 const BookPage = (props) => {
-  const [commentReturnMessage, setCommentReturnMessage] = useState(null);
+  const { showFeedback } = useContext(FeedbackContext);
   const { book } = props;
   const router = useRouter();
   const { bookId } = router.query;
 
   const newCommentHandler = (name, text) => {
+    showFeedback({
+      title: 'Publishing...',
+      message: 'Please wait while we publish your comment',
+      status: 'pending',
+    });
     fetch(`/api/${bookId}`, {
       method: 'POST',
       body: JSON.stringify({
@@ -23,8 +30,26 @@ const BookPage = (props) => {
       }),
       headers: { 'Content-Type': 'application/json' },
     })
-      .then((res) => res.json())
-      .then((data) => setCommentReturnMessage(data.message));
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return res.json().then((error) => error.message);
+      })
+      .then((data) =>
+        showFeedback({
+          title: 'Success!',
+          message: 'Your comment has been published',
+          status: 'success',
+        })
+      )
+      .catch((error) =>
+        showFeedback({
+          title: 'Error',
+          message: error.message || 'We encountered a problem',
+          status: 'error',
+        })
+      );
   };
 
   return (
@@ -38,10 +63,7 @@ const BookPage = (props) => {
         description={book.description}
         author={book.author}
       />
-      <NewComment
-        message={commentReturnMessage}
-        onSubmitComment={newCommentHandler}
-      />
+      <NewComment onSubmitComment={newCommentHandler} />
       <Comments commentId={bookId} />
     </Fragment>
   );

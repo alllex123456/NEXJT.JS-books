@@ -4,19 +4,31 @@
   left: 0;
   width: 100%;
   height: 10rem;
-  padding: 2rem 4rem;
-  font-size: 1.6rem;
-  background: #fff;
+  padding: 0 4rem;
+  font-size: 2rem;
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  justify-content: space-between;
+  transition: all 1s;
+}
+
+.feedback h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 .pending {
-  background: blue;
+  background: rgb(10, 10, 151);
+  opacity: 100%;
 }
 
 .success {
-  background: green;
+  background: rgb(9, 133, 9);
+  opacity: 100%;
 }
 
 .error {
-  background: red;
+  background: rgb(187, 16, 16);
+  opacity: 100%;
 }

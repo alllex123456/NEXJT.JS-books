@@ -4,12 +4,20 @@ import { useState, useEffect } from 'react';
 const Comments = (props) => {
   const { commentId } = props;
   const [comments, setComments] = useState([]);
+  const [isFetchingComments, setIsFetchingComments] = useState(true);
 
   useEffect(() => {
     fetch(`/api/${commentId}`)
       .then((res) => res.json())
-      .then((data) => setComments(data.comments));
+      .then((data) => {
+        setComments(data.comments);
+        setIsFetchingComments(false);
+      });
   }, [comments]);
+
+  if (isFetchingComments) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className={classes.comments}>

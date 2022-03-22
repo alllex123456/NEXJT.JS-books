@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 const FeedbackContext = createContext({
   feedback: null,
@@ -8,6 +8,18 @@ const FeedbackContext = createContext({
 
 export const FeedbackContextProvider = (props) => {
   const [feedback, setFeedback] = useState();
+
+  useEffect(() => {
+    if (
+      feedback &&
+      (feedback.status === 'success' || feedback.status === 'error')
+    ) {
+      const timer = setTimeout(() => {
+        setFeedback(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [feedback]);
 
   const showFeedbackHandler = (data) => {
     setFeedback(data);

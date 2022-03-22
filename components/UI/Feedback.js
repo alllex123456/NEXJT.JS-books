@@ -11,7 +11,7 @@ const Feedback = (props) => {
 
   return (
     <div className={`${classes.feedback} ${activeClasses}`}>
-      <p>{title}</p>
+      <h2>{title}</h2>
       <p>{message}</p>
     </div>
   );
